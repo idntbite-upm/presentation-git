@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 export default function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	// const [errorMsg, setErrorMsg] = useState('');
+	const [errorMsg, setErrorMsg] = useState("");
 	const router = useRouter();
 
 	const handleSubmit = async (e) => {
@@ -16,11 +16,11 @@ export default function Login() {
 				{ email, password },
 			);
 			localStorage.setItem("token", res.data.token);
-			// setErrorMsg('');
+			setErrorMsg('');
 			router.push("/");
 		} catch (err) {
 			console.error(err);
-			// setErrorMsg('Email ou mot de passe incorrect');
+			setErrorMsg('Email ou mot de passe incorrect');
 		}
 	};
 
@@ -30,7 +30,7 @@ export default function Login() {
 				<h2 className="text-2xl font-bold text-center text-gray-900 dark:text-gray-100">
 					Login
 				</h2>
-				{/* {errorMsg && (
+				{errorMsg && (
           <div className="mt-4 p-3 rounded-md bg-red-50 border border-red-200">
             <p className="text-sm text-red-600 font-medium flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -39,7 +39,7 @@ export default function Login() {
               {errorMsg}
             </p>
           </div>
-        )} */}
+        )}
 				<form onSubmit={handleSubmit} className="space-y-4">
 					<div>
 						<label
